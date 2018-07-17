@@ -1,13 +1,17 @@
-import { Controller } from '@nestjs/common';
-import { Get } from '@nestjs/common';
-import { TypesRepository } from './types.repository';
+import { Controller, Get } from '@nestjs/common';
+import { TypesService } from './types.service';
 
-@Controller()
+@Controller('types')
 export class TypesController {
-  constructor(private readonly repository: TypesRepository) {}
+  constructor(private readonly service: TypesService) {}
+
+  @Get('load')
+  async loadAll() {
+    return this.service.loadTypes();
+  }
 
   @Get()
   async findAll() {
-    return this.repository.findAll();
+    return this.service.findAll();
   }
 }

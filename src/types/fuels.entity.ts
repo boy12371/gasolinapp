@@ -1,5 +1,11 @@
-import { Entity, ManyToOne } from 'typeorm';
-import { PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  JoinColumn,
+  ManyToOne
+} from 'typeorm';
 import { Type } from './types.entity';
 import { Station } from '../stations/stations.entity';
 

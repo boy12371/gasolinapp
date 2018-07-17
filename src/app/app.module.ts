@@ -5,9 +5,11 @@ import { StationsModule } from 'stations/stations.module';
 import { StationsCron } from 'stations/stations.cron';
 import { StationsService } from 'stations/stations.service';
 import { TypesModule } from 'types/types.module';
+import { TypeOrmModule } from '../../node_modules/@nestjs/typeorm';
+import { Connection } from '../../node_modules/typeorm';
 
 @Module({
-  imports: [StationsModule, TypesModule],
+  imports: [TypeOrmModule.forRoot(), StationsModule, TypesModule],
   controllers: [AppController],
   providers: [AppService]
 })

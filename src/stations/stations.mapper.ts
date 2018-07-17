@@ -24,7 +24,7 @@ export class StationsMapper {
     station.latitude = json['Latitud'];
     station.longitude = json['Longitud (WGS84)'];
 
-    const fuels: Array<Fuel> = new Array<Fuel>();
+    /*const fuels: Array<Fuel> = new Array<Fuel>();
 
     for (let type of types) {
       const fuel = new Fuel();
@@ -34,7 +34,7 @@ export class StationsMapper {
       fuels.push(fuel);
     }
 
-    station.fuels = fuels;
+    station.fuels = fuels;*/
 
     return station;
   }

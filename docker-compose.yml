@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: db
+  web:
+    build: .
+    command: npm run start
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  pgadmin:
+    depends_on: 
+      - db
+    links:
+      - db:postgres
+    image: fenglc/pgadmin4
+    ports:
+      - "5050:5050"
+
+    restart: unless-stopped

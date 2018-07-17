@@ -1,14 +1,12 @@
-import { Entity } from 'typeorm';
-import { PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Type {
-  constructor(id: number, name: string) {
-    this.id = id;
+  constructor(name: string) {
     this.name = name;
   }
 
-  @PrimaryColumn() id: number;
+  @PrimaryGeneratedColumn() id: number;
 
   @Column() name: string;
 }
