@@ -22,5 +22,5 @@ export class Station {
   @Column() longitude: string;
 
   @OneToMany(type => Fuel, fuel => fuel.station)
-  @Column() fuels: Array<Fuel>;
+  fuels: Array<Fuel>;
 }
