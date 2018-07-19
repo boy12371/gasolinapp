@@ -10,12 +10,12 @@ export class StationsCron {
     new CronJob(
       // Runs every day (Monday through Sunday) at 05:30:00 AM.
       '00 30 05 * * 1-7',
-      () => {
-        this.service.loadStations();
-      },
+      this.service.loadStations,
       null,
       true,
       'Europe/Madrid'
     );
+
+    this.service.loadStations();
   }
 }

@@ -1,9 +1,10 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import { StationsMapper } from './stations.mapper';
 import { Station } from './stations.entity';
-import { Repository } from '../../node_modules/typeorm';
+import { Repository } from 'typeorm';
 import { Type } from 'types/types.entity';
-import { InjectRepository } from '../../node_modules/@nestjs/typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Fuel } from 'fuels/fuels.entity';
 
 @Injectable()
 export class StationsService {
@@ -17,11 +18,12 @@ export class StationsService {
 
   constructor(
     @InjectRepository(Type) private readonly typeRepository: Repository<Type>,
+    @InjectRepository(Fuel) private readonly fuelRepository: Repository<Fuel>,
     @InjectRepository(Station)
     private readonly stationRepository: Repository<Station>,
     private readonly httpService: HttpService,
     private readonly stationsMapper: StationsMapper
-  ) {}
+  ) { }
 
   async loadStations() {
     try {
@@ -31,17 +33,15 @@ export class StationsService {
 
       const types = await this.typeRepository.find();
 
-      const stations = await response.data.map(json => {
-        return this.stationsMapper.toStations(json, types);
-      });
+      const stations = await this.stationsMapper.toStations(response.data, types);
 
-      this.stationRepository.create(stations);
+      await this.stationRepository.save(stations);
     } catch (error) {
       console.error(error);
     }
   }
 
   async findAll(latitude: string, longitude: string): Promise<Array<Station>> {
-    return await this.stationRepository.find();
+    return await this.stationRepository.find({ take: 20, relations: ["fuels", "fuels.type"] });
   }
 }

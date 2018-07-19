@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app/app.module';
+import { AppModule } from 'app/app.module';
 import { StationsCron } from 'stations/stations.cron';
 import { INestApplication, Logger } from '@nestjs/common';
 import { TypesService } from 'types/types.service';
@@ -8,15 +8,15 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
   await loadTypes(app);
-  // startStationsCron(app);
+  await startStationsCron(app);
 }
 
 async function loadTypes(app: INestApplication) {
   await app.get(TypesService).loadTypes();
 }
 
-function startStationsCron(app: INestApplication) {
-  app.get(StationsCron).start();
+async function startStationsCron(app: INestApplication) {
+  await app.get(StationsCron).start();
 }
 
 bootstrap();

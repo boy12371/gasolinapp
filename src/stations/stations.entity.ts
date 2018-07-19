@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Fuel } from '../types/fuels.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, PrimaryColumn } from 'typeorm';
+import { Fuel } from 'fuels/fuels.entity';
 
 @Entity()
 export class Station {
-  @PrimaryGeneratedColumn() id: number;
+  @PrimaryColumn() id: string;
 
   @Column() name: string;
 
@@ -21,6 +21,6 @@ export class Station {
 
   @Column() longitude: string;
 
-  @OneToMany(type => Fuel, fuel => fuel.station)
+  @OneToMany(type => Fuel, fuel => fuel.station, { cascade: true })
   fuels: Array<Fuel>;
 }

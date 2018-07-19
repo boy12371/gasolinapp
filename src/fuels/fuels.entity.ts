@@ -6,8 +6,8 @@ import {
   JoinColumn,
   ManyToOne
 } from 'typeorm';
-import { Type } from './types.entity';
-import { Station } from '../stations/stations.entity';
+import { Type } from 'types/types.entity';
+import { Station } from 'stations/stations.entity';
 
 @Entity()
 export class Fuel {
@@ -15,8 +15,7 @@ export class Fuel {
 
   @Column() price: string;
 
-  @OneToOne(type => Type)
-  @JoinColumn()
+  @ManyToOne(type => Type, type => type.fuels)
   type: Type;
 
   @ManyToOne(type => Station, station => station.fuels)

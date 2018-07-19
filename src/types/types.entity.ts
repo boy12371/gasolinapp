@@ -1,12 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, PrimaryColumn } from 'typeorm';
+import { Fuel } from 'fuels/fuels.entity';
 
 @Entity()
 export class Type {
-  constructor(name: string) {
+  constructor(id: number, name: string, renderableName: string) {
+    this.id = id
     this.name = name;
+    this.renderableName = renderableName;
   }
 
-  @PrimaryGeneratedColumn() id: number;
+  @PrimaryColumn() id: number;
 
   @Column() name: string;
+
+  @Column() renderableName: string;
+
+  @OneToMany(type => Fuel, fuel => fuel.type)
+  fuels: Array<Fuel>;
 }
