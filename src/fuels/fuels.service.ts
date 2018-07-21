@@ -8,6 +8,6 @@ export class FuelsService {
     constructor(@InjectRepository(Fuel) private readonly repository: Repository<Fuel>, ) { }
 
     async findAll(stationId: string): Promise<Array<Fuel>> {
-        return await this.repository.find({ take: 10, where: { stationId: stationId } })
+        return await this.repository.find({ relations: ['type'], where: {station: { id: stationId } } });
     }
 }
