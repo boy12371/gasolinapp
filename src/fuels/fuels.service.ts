@@ -5,9 +5,14 @@ import { Injectable } from "../../node_modules/@nestjs/common";
 
 @Injectable()
 export class FuelsService {
-    constructor(@InjectRepository(Fuel) private readonly repository: Repository<Fuel>, ) { }
+  constructor(
+    @InjectRepository(Fuel) private readonly repository: Repository<Fuel>
+  ) {}
 
-    async findAll(stationId: string): Promise<Array<Fuel>> {
-        return await this.repository.find({ relations: ['type'], where: {station: { id: stationId } } });
-    }
+  async findAll(stationId: string): Promise<Array<Fuel>> {
+    return await this.repository.find({
+      relations: ["type"],
+      where: { station: { id: stationId } }
+    });
+  }
 }

@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, PrimaryColumn } from 'typeorm';
-import { Fuel } from 'fuels/fuels.entity';
+import { Entity, Column, OneToMany, PrimaryColumn } from "typeorm";
+import { Fuel } from "fuels/fuels.entity";
 
 @Entity()
 export class Type {
   constructor(id: number, name: string, renderableName: string) {
-    this.id = id
+    this.id = id;
     this.name = name;
     this.renderableName = renderableName;
   }

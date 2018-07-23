@@ -1,6 +1,5 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:latest", "tslint-config-prettier"],
   "jsRules": {
     "no-unused-expression": true
   },
@@ -25,5 +24,6 @@
     "one-line": [false],
     "one-variable-per-declaration": [false]
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "extends": ["tslint:latest", "tslint-config-prettier"],
 }

@@ -1,12 +1,12 @@
-import { Module, HttpModule } from '@nestjs/common';
-import { StationsController } from './stations.controller';
-import { StationsService } from './stations.service';
-import { StationsMapper } from './stations.mapper';
-import { StationsCron } from './stations.cron';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Type } from 'types/types.entity';
-import { Station } from './stations.entity';
-import { Fuel } from 'fuels/fuels.entity';
+import { Module, HttpModule } from "@nestjs/common";
+import { StationsController } from "./stations.controller";
+import { StationsService } from "./stations.service";
+import { StationsMapper } from "./stations.mapper";
+import { StationsCron } from "./stations.cron";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { Type } from "types/types.entity";
+import { Station } from "./stations.entity";
+import { Fuel } from "fuels/fuels.entity";
 
 @Module({
   imports: [

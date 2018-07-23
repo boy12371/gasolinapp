@@ -1,18 +1,18 @@
-import { Injectable, HttpService } from '@nestjs/common';
-import { StationsMapper } from './stations.mapper';
-import { Station } from './stations.entity';
-import { Repository } from 'typeorm';
-import { Type } from 'types/types.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Fuel } from 'fuels/fuels.entity';
+import { Injectable, HttpService } from "@nestjs/common";
+import { StationsMapper } from "./stations.mapper";
+import { Station } from "./stations.entity";
+import { Repository } from "typeorm";
+import { Type } from "types/types.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Fuel } from "fuels/fuels.entity";
 
 @Injectable()
 export class StationsService {
   url: string =
-    'https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/';
+    "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/";
   config = {
     headers: {
-      Accept: 'application/json'
+      Accept: "application/json"
     }
   };
 
@@ -23,7 +23,7 @@ export class StationsService {
     private readonly stationRepository: Repository<Station>,
     private readonly httpService: HttpService,
     private readonly stationsMapper: StationsMapper
-  ) { }
+  ) {}
 
   async loadStations() {
     try {
@@ -32,8 +32,10 @@ export class StationsService {
         .toPromise();
 
       const types = await this.typeRepository.find();
-
-      const stations = await this.stationsMapper.toStations(response.data, types);
+      const stations = await this.stationsMapper.toStations(
+        response.data,
+        types
+      );
 
       await this.stationRepository.save(stations);
     } catch (error) {
@@ -42,6 +44,9 @@ export class StationsService {
   }
 
   async findAll(latitude: string, longitude: string): Promise<Array<Station>> {
-    return await this.stationRepository.find({ take: 20, relations: ["fuels", "fuels.type"] });
+    return await this.stationRepository.find({
+      take: 20,
+      relations: ["fuels", "fuels.type"]
+    });
   }
 }

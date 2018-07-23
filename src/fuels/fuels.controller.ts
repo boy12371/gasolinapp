@@ -1,12 +1,12 @@
-import { Controller, Get, Param, Query } from "../../node_modules/@nestjs/common";
+import { Controller, Get, Query } from "../../node_modules/@nestjs/common";
 import { FuelsService } from "./fuels.service";
 
-@Controller('fuels')
+@Controller("fuels")
 export class FuelsController {
-    constructor(private readonly service: FuelsService) { }
+  constructor(private readonly service: FuelsService) {}
 
-    @Get()
-    async findAll(@Query('stationId') stationId) {
-        return this.service.findAll(stationId);
-    }
+  @Get()
+  async findAll(@Query("stationId") stationId) {
+    return this.service.findAll(stationId);
+  }
 }

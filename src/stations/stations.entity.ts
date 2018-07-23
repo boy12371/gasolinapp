@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, PrimaryColumn } from 'typeorm';
-import { Fuel } from 'fuels/fuels.entity';
+import { Entity, Column, OneToMany, PrimaryColumn } from "typeorm";
+import { Fuel } from "fuels/fuels.entity";
 
 @Entity()
 export class Station {
