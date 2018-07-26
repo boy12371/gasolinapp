@@ -23,9 +23,9 @@ export class StationsService {
     private readonly stationRepository: Repository<Station>,
     private readonly httpService: HttpService,
     private readonly stationsMapper: StationsMapper
-  ) {}
+  ) { }
 
-  async loadStations() {
+  async loadStations(): Promise<Array<Station>> {
     try {
       const response = await this.httpService
         .get(this.url, this.config)
@@ -37,7 +37,7 @@ export class StationsService {
         types
       );
 
-      await this.stationRepository.save(stations);
+      return await this.stationRepository.save(stations);
     } catch (error) {
       console.error(error);
     }
