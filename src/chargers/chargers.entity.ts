@@ -1,26 +1,24 @@
-import { Entity, Column, PrimaryColumn } from "../../node_modules/typeorm";
+import { Entity, Column, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Charger {
+  @PrimaryColumn("uuid") uuid: string;
 
-    @PrimaryColumn('uuid') uuid: string;
+  @Column() name: string;
 
-    @Column() name: string;
+  @Column() distributor: string;
 
-    @Column() distributor: string;
+  @Column() address: string;
 
-    @Column() address: string;
+  @Column() city: string;
 
-    @Column() city: string;
+  @Column() state: string;
 
-    @Column() state: string;
+  @Column() latitude: string;
 
-    @Column() latitude: string;
+  @Column() longitude: string;
 
-    @Column() longitude: string;
+  @Column() tension: string;
 
-    @Column() tension: string;
-
-    @Column() points: string;
-
+  @Column() points: string;
 }

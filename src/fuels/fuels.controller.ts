@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from "../../node_modules/@nestjs/common";
+import { Controller, Get, Query } from "@nestjs/common";
 import { FuelsService } from "./fuels.service";
 
 @Controller("fuels")

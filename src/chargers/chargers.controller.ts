@@ -1,6 +1,4 @@
-import { Controller } from "../../node_modules/@nestjs/common";
+import { Controller } from "@nestjs/common";
 
-@Controller('chargers')
-export class ChargersController {
-
-}
+@Controller("chargers")
+export class ChargersController {}
