@@ -6,7 +6,7 @@ export class FuelsController {
   constructor(private readonly service: FuelsService) {}
 
   @Get()
-  async findAll(@Query("stationId") stationId) {
+  async findAll(@Query("stationUuid") stationId) {
     return this.service.findAll(stationId);
   }
 }

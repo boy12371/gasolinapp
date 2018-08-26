@@ -12,7 +12,7 @@ export class FuelsService {
   async findAll(stationId: string): Promise<Array<Fuel>> {
     return await this.repository.find({
       relations: ["type"],
-      where: { station: { id: stationId } }
+      where: { station: { uuid: stationId } }
     });
   }
 }

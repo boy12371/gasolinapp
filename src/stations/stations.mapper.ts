@@ -33,7 +33,7 @@ export class StationsMapper {
     for (let type of types) {
       if (json["Precio " + type.name]) {
         const fuel = new Fuel();
-        fuel.price = json["Precio " + type.name];
+        fuel.price = Number(json["Precio " + type.name].replace(",", "."));
         fuel.station = station;
         fuel.type = type;
         fuels.push(fuel);

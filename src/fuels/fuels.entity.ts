@@ -4,7 +4,7 @@ import { Station } from "stations/stations.entity";
 
 @Entity()
 export class Fuel {
-  @Column() price: string;
+  @Column("float") price: number;
 
   @ManyToOne(type => Type, type => type.fuels, { primary: true })
   type: Type;
