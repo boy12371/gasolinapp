@@ -7,6 +7,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Type } from "types/types.entity";
 import { Station } from "./stations.entity";
 import { Fuel } from "fuels/fuels.entity";
+import { ExcludeFieldInterceptor } from "interceptor";
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { Fuel } from "fuels/fuels.entity";
     HttpModule
   ],
   controllers: [StationsController],
-  providers: [StationsService, StationsMapper, StationsCron]
+  providers: [StationsService, StationsMapper, StationsCron, ExcludeFieldInterceptor]
 })
 export class StationsModule {}

@@ -43,9 +43,10 @@ export class StationsService {
     }
   }
 
-  async findAll(latitude: string, longitude: string): Promise<Array<Station>> {
+  async findAll(latitude: string, longitude: string) {
     return await this.stationRepository.find({
       take: 20,
+      where: `ST_Distance_Sphere(POINT(${latitude},${longitude}), point) <= 10000`,
       relations: ["fuels", "fuels.type"]
     });
   }

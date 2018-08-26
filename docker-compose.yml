@@ -2,13 +2,12 @@ version: '3'
 
 services:
   db:
-    image: postgres
+    image: mysql:5.7
     ports:
-      - "5432:5432"
+      - "3306:3306"
     environment:
-      POSTGRES_PASSWORD: root
-      POSTGRES_USER: root
-      POSTGRES_DB: db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
   web:
     build: .
     command: npm run start
@@ -18,13 +17,10 @@ services:
       - "3000:3000"
     depends_on:
       - db
-  pgadmin:
+  adminer:
     depends_on: 
       - db
-    links:
-      - db:postgres
-    image: fenglc/pgadmin4
+    image: adminer
     ports:
-      - "5050:5050"
-
+      - 8080:8080
     restart: unless-stopped

@@ -1,7 +1,7 @@
 {
-  "type": "postgres",
+  "type": "mysql",
   "host": "db",
-  "port": 5432,
+  "port": 3306,
   "username": "root",
   "password": "root",
   "database": "db",

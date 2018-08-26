@@ -1,5 +1,6 @@
 import { Entity, Column, OneToMany, PrimaryColumn } from "typeorm";
 import { Fuel } from "fuels/fuels.entity";
+import { Exclude } from "class-transformer";
 
 @Entity()
 export class Station {
@@ -20,6 +21,8 @@ export class Station {
   @Column() latitude: string;
 
   @Column() longitude: string;
+
+  @Column("point") @Exclude() point: string;
 
   @OneToMany(type => Fuel, fuel => fuel.station, { cascade: true })
   fuels: Array<Fuel>;

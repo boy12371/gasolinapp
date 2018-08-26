@@ -2,10 +2,11 @@ import { Injectable } from "@nestjs/common";
 import { Station } from "./stations.entity";
 import { Fuel } from "fuels/fuels.entity";
 import { Type } from "types/types.entity";
+import { stat } from "fs";
 
 @Injectable()
 export class StationsMapper {
-  constructor() {}
+  constructor() { }
 
   toStations(json: any, types: Array<Type>): Array<Station> {
     const jsonArray: Array<any> = json["ListaEESSPrecio"];
@@ -22,8 +23,10 @@ export class StationsMapper {
     station.address = json["Dirección"];
     station.city = json["Municipio"];
     station.state = json["Provincia"];
-    station.latitude = json["Latitud"];
-    station.longitude = json["Longitud (WGS84)"];
+    station.latitude = json["Latitud"].replace(",", ".");
+    station.longitude = json["Longitud (WGS84)"].replace(",", ".");
+
+    station.point = `POINT(${Number(station.latitude)} ${Number(station.longitude)})`;
 
     const fuels: Array<Fuel> = new Array<Fuel>();
 
