@@ -4,10 +4,11 @@ import { TypesController } from "./types.controller";
 import { TypesService } from "./types.service";
 import { Type } from "./types.entity";
 import { Fuel } from "fuels/fuels.entity";
+import { UuidService } from "uuid/uuid.service";
 
 @Module({
   imports: [TypeOrmModule.forFeature([Type]), TypeOrmModule.forFeature([Fuel])],
   controllers: [TypesController],
-  providers: [TypesService]
+  providers: [TypesService, UuidService]
 })
 export class TypesModule {}

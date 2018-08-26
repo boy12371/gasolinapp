@@ -3,13 +3,12 @@ import { Fuel } from "fuels/fuels.entity";
 
 @Entity()
 export class Type {
-  constructor(id: number, name: string, renderableName: string) {
-    this.id = id;
+  constructor(name: string, renderableName: string) {
     this.name = name;
     this.renderableName = renderableName;
   }
 
-  @PrimaryColumn() id: number;
+  @PrimaryColumn() uuid: string;
 
   @Column() name: string;
 
