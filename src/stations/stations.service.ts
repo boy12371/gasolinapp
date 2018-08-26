@@ -18,7 +18,6 @@ export class StationsService {
 
   constructor(
     @InjectRepository(Type) private readonly typeRepository: Repository<Type>,
-    @InjectRepository(Fuel) private readonly fuelRepository: Repository<Fuel>,
     @InjectRepository(Station)
     private readonly stationRepository: Repository<Station>,
     private readonly httpService: HttpService,
