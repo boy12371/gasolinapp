@@ -8,6 +8,7 @@ import { Type } from "types/types.entity";
 import { Station } from "./stations.entity";
 import { Fuel } from "fuels/fuels.entity";
 import { ExcludeFieldInterceptor } from "interceptor";
+import { UuidService } from "uuid/uuid.service";
 
 @Module({
   imports: [
@@ -17,6 +18,6 @@ import { ExcludeFieldInterceptor } from "interceptor";
     HttpModule
   ],
   controllers: [StationsController],
-  providers: [StationsService, StationsMapper, StationsCron, ExcludeFieldInterceptor]
+  providers: [StationsService, StationsMapper, StationsCron, ExcludeFieldInterceptor, UuidService]
 })
 export class StationsModule {}

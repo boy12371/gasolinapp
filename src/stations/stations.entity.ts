@@ -4,7 +4,7 @@ import { Exclude } from "class-transformer";
 
 @Entity()
 export class Station {
-  @PrimaryColumn() id: string;
+  @PrimaryColumn() uuid: string;
 
   @Column() name: string;
 

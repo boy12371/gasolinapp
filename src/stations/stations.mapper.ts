@@ -2,11 +2,11 @@ import { Injectable } from "@nestjs/common";
 import { Station } from "./stations.entity";
 import { Fuel } from "fuels/fuels.entity";
 import { Type } from "types/types.entity";
-import { stat } from "fs";
+import { UuidService } from "uuid/uuid.service";
 
 @Injectable()
 export class StationsMapper {
-  constructor() { }
+  constructor(private readonly uuidService: UuidService) { }
 
   toStations(json: any, types: Array<Type>): Array<Station> {
     const jsonArray: Array<any> = json["ListaEESSPrecio"];
@@ -16,7 +16,7 @@ export class StationsMapper {
   toStation(json: any, types: Array<Type>): Station {
     let station: Station = new Station();
 
-    station.id = json["IDEESS"];
+    station.uuid = this.uuidService.create(json["IDEESS"]);
     station.name = json["Rótulo"];
     station.schedule = json["Horario"];
     station.postalCode = json["C.P."];
