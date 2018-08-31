@@ -5,9 +5,9 @@ import { ExcludeFieldInterceptor } from "interceptor";
 @Controller("stations")
 @UseInterceptors(ExcludeFieldInterceptor)
 export class StationsController {
-  constructor(private readonly service: StationsService) { }
+  constructor(private readonly service: StationsService) {}
 
-  @Get(':uuid')
+  @Get(":uuid")
   async findOne(@Param("uuid") uuid: string) {
     return this.service.findOne(uuid);
   }

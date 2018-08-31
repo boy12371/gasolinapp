@@ -1,7 +1,7 @@
-import { InjectRepository } from "@nestjs/typeorm";
-import { Fuel } from "./fuels.entity";
-import { Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Fuel } from "./fuels.entity";
 
 @Injectable()
 export class FuelsService {
