@@ -9,11 +9,6 @@ import { InjectRepository } from "@nestjs/typeorm";
 export class StationsService {
   url: string =
     "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/";
-  config = {
-    headers: {
-      Accept: "application/json"
-    }
-  };
 
   constructor(
     @InjectRepository(Type) private readonly typeRepository: Repository<Type>,
@@ -26,7 +21,7 @@ export class StationsService {
   async loadStations(): Promise<Array<Station>> {
     try {
       const response = await this.httpService
-        .get(this.url, this.config)
+        .get(this.url, { headers: { Accept: "application/json" } })
         .toPromise();
 
       const types = await this.typeRepository.find();
