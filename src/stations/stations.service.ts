@@ -11,9 +11,9 @@ export class StationsService {
     "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/";
 
   constructor(
-    @InjectRepository(Type) private readonly typeRepository: Repository<Type>,
     @InjectRepository(Station)
     private readonly stationRepository: Repository<Station>,
+    @InjectRepository(Type) private readonly typeRepository: Repository<Type>,
     private readonly httpService: HttpService,
     private readonly stationsMapper: StationsMapper
   ) {}
@@ -43,9 +43,15 @@ export class StationsService {
     });
   }
 
-  async findAll(latitude: string, longitude: string) {
+  async findAll(
+    latitude: string,
+    longitude: string,
+    take: number,
+    skip: number
+  ) {
     return await this.stationRepository.find({
-      take: 20,
+      take: take,
+      skip: skip,
       where: `ST_Distance_Sphere(point, POINT(${latitude},${longitude})) <= 10000`,
       relations: ["fuels", "fuels.type"]
     });

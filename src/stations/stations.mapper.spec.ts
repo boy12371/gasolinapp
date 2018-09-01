@@ -8,7 +8,7 @@ describe("StationsMapper", () => {
   const types = new Fixtures().types();
 
   describe("toStations", () => {
-    const json = require("./stations.json");
+    const json = new Fixtures().stationsJson();
 
     it("should return an array of stations", () => {
       const stations = mapper.toStations(json, types);
@@ -17,7 +17,7 @@ describe("StationsMapper", () => {
   });
 
   describe("toStation", () => {
-    const json = require("./station.json");
+    const json = new Fixtures().stationJson();
 
     it("should return a station with all the properties mapped", () => {
       const station = mapper.toStation(json, types);
