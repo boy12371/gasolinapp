@@ -28,8 +28,9 @@ describe("StationsMapper", () => {
       expect(station.address).toBe("CL MANISITU, 9");
       expect(station.city).toBe("Alegría-Dulantzi");
       expect(station.state).toBe("ÁLAVA");
-      expect(station.latitude).toBe("42,846028");
-      expect(station.longitude).toBe("-2,509361");
+      expect(station.latitude).toBe("42.846028");
+      expect(station.longitude).toBe("-2.509361");
+      expect(station.point).toBe("POINT(42.846028 -2.509361)");
     });
   });
 });
