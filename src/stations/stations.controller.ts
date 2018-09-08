@@ -1,15 +1,15 @@
 import { Controller, Query, Get, UseInterceptors, Param } from "@nestjs/common";
 import { StationsService } from "./stations.service";
-import { ClassTransformerInterceptor } from "class.transformer.interceptor";
+import { ClassTransformerInterceptor } from "../class.transformer.interceptor";
 
 @Controller("stations")
 @UseInterceptors(ClassTransformerInterceptor)
 export class StationsController {
-  constructor(private readonly service: StationsService) {}
+  constructor(private readonly stationsService: StationsService) {}
 
   @Get(":uuid")
   async findOne(@Param("uuid") uuid: string) {
-    return this.service.findOne(uuid);
+    return this.stationsService.findOne(uuid);
   }
 
   @Get()
@@ -19,6 +19,6 @@ export class StationsController {
     @Query("take") take: number = 20,
     @Query("skip") skip: number = 0
   ) {
-    return this.service.findAll(latitude, longitude, take, skip);
+    return this.stationsService.findAll(latitude, longitude, take, skip);
   }
 }
