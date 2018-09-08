@@ -1,9 +1,10 @@
-import { Injectable, HttpService } from "@nestjs/common";
-import { Charger } from "./chargers.entity";
-import * as Papaparse from "papaparse";
-import { ConfigService } from "config/config.service";
+import { Injectable, HttpService, Logger } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
+import { Charger } from "./chargers.entity";
+import { ChargersMapper } from "./chargers.mapper";
+import { ConfigService } from "../config/config.service";
+import { ChargersGeocoder } from "./chargers.geocoder";
 
 @Injectable()
 export class ChargersService {
@@ -11,23 +12,18 @@ export class ChargersService {
     @InjectRepository(Charger)
     private readonly chargersRepository: Repository<Charger>,
     private readonly httpService: HttpService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
+    private readonly chargersMapper: ChargersMapper,
+    private readonly chargersGeocoder: ChargersGeocoder
   ) {}
 
   async loadChargers(): Promise<Array<Charger>> {
     const response = await this.httpService
       .get(this.configService.getChargersUrl())
       .toPromise();
-    const results = Papaparse.parse(response.data, {
-      header: true,
-      step: function(row) {
-        console.log("Row:", row.data);
-      },
-      complete: function(results) {
-        console.log(results);
-      }
-    });
-    return results.data;
+    const chargers = await this.chargersMapper.toChargers(response.data);
+    const geocodedChargers = await this.chargersGeocoder.geocodeAll(chargers);
+    return await this.chargersRepository.save(geocodedChargers);
   }
 
   async findOne(uuid: string) {

@@ -21,7 +21,7 @@ export class ConfigService {
   }
 
   getGeocodingUrl(): string {
-    return this.envConfig.CHARGERS_URL;
+    return this.envConfig.GEO_CODING_URL;
   }
 
   getGoogleApiKey(): string {

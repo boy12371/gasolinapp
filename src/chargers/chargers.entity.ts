@@ -10,9 +10,6 @@ export class Charger {
   name: string;
 
   @Column()
-  distributor: string;
-
-  @Column()
   address: string;
 
   @Column()
@@ -26,6 +23,9 @@ export class Charger {
 
   @Column()
   longitude: string;
+
+  @Column()
+  distributor: string;
 
   @Column()
   tension: string;

@@ -1,4 +1,4 @@
-import { Injectable, HttpService } from "@nestjs/common";
+import { Injectable, HttpService, Logger } from "@nestjs/common";
 import { StationsMapper } from "./stations.mapper";
 import { Station } from "./stations.entity";
 import { Repository } from "typeorm";
@@ -32,8 +32,8 @@ export class StationsService {
       );
 
       return await this.stationRepository.save(stations);
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      Logger.error(e);
     }
   }
 

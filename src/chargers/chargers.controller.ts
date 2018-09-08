@@ -1,4 +1,11 @@
-import { Controller, Get, Query, Param, UseInterceptors } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Query,
+  Param,
+  UseInterceptors,
+  Logger
+} from "@nestjs/common";
 import { ChargersService } from "./chargers.service";
 import { ClassTransformerInterceptor } from "../class.transformer.interceptor";
 
@@ -20,5 +27,10 @@ export class ChargersController {
     @Query("skip") skip: number = 0
   ) {
     return this.chargersService.findAll(latitude, longitude, take, skip);
+  }
+
+  @Get("/load/:load")
+  async load(@Param("load") load: string) {
+    return this.chargersService.loadChargers();
   }
 }
