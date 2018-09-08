@@ -1,5 +1,5 @@
-import uuidv5 from "uuid/v5";
 import { Injectable } from "@nestjs/common";
+import uuidv5 from "uuid/v5";
 
 @Injectable()
 export class UuidService {

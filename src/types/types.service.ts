@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { UuidService } from "uuid/uuid.service";
+import { UuidService } from "../uuid/uuid.service";
 import { Type } from "./types.entity";
 
 @Injectable()

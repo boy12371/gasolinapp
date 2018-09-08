@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { UuidService } from "../uuid/uuid.service";
 import { Fuel } from "../fuels/fuels.entity";
-import { Type } from "../types/types.entity";
 import { Station } from "./stations.entity";
+import { Type } from "../types/types.entity";
 
 @Injectable()
 export class StationsMapper {

@@ -1,6 +1,6 @@
 import { Controller, Query, Get, UseInterceptors, Param } from "@nestjs/common";
 import { StationsService } from "./stations.service";
-import { ClassTransformerInterceptor } from "class.transformer.interceptor";
+import { ClassTransformerInterceptor } from "../class.transformer.interceptor";
 
 @Controller("stations")
 @UseInterceptors(ClassTransformerInterceptor)

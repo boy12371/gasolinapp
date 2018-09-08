@@ -2,7 +2,7 @@ import { Injectable, HttpService } from "@nestjs/common";
 import { StationsMapper } from "./stations.mapper";
 import { Station } from "./stations.entity";
 import { Repository } from "typeorm";
-import { Type } from "types/types.entity";
+import { Type } from "../types/types.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
