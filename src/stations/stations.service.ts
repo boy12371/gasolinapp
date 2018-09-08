@@ -4,24 +4,25 @@ import { Station } from "./stations.entity";
 import { Repository } from "typeorm";
 import { Type } from "../types/types.entity";
 import { InjectRepository } from "@nestjs/typeorm";
+import { ConfigService } from "config/config.service";
 
 @Injectable()
 export class StationsService {
-  url: string =
-    "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/";
-
   constructor(
     @InjectRepository(Station)
     private readonly stationRepository: Repository<Station>,
     @InjectRepository(Type) private readonly typeRepository: Repository<Type>,
     private readonly httpService: HttpService,
-    private readonly stationsMapper: StationsMapper
+    private readonly stationsMapper: StationsMapper,
+    private readonly configService: ConfigService
   ) {}
 
   async loadStations(): Promise<Array<Station>> {
     try {
       const response = await this.httpService
-        .get(this.url, { headers: { Accept: "application/json" } })
+        .get(this.configService.getStationsUrl(), {
+          headers: { Accept: "application/json" }
+        })
         .toPromise();
 
       const types = await this.typeRepository.find();

@@ -11,4 +11,8 @@ export class ConfigService {
   get(key: string): string {
     return this.envConfig[key];
   }
+
+  getStationsUrl(): string {
+    return this.envConfig.STATIONS_URL;
+  }
 }
