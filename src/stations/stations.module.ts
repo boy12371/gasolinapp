@@ -7,9 +7,9 @@ import { StationsCron } from "./stations.cron";
 import { Station } from "./stations.entity";
 import { Type } from "../types/types.entity";
 import { Fuel } from "../fuels/fuels.entity";
-import { ClassTransformerInterceptor } from "class.transformer.interceptor";
-import { ConfigModule } from "config/config.module";
-import { UuidModule } from "uuid/uuid.module";
+import { ClassTransformerInterceptor } from "../class.transformer.interceptor";
+import { ConfigModule } from "../config/config.module";
+import { UuidModule } from "../uuid/uuid.module";
 
 @Module({
   imports: [

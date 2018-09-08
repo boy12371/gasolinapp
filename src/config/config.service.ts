@@ -15,4 +15,16 @@ export class ConfigService {
   getStationsUrl(): string {
     return this.envConfig.STATIONS_URL;
   }
+
+  getChargersUrl(): string {
+    return this.envConfig.CHARGERS_URL;
+  }
+
+  getGeocodingUrl(): string {
+    return this.envConfig.CHARGERS_URL;
+  }
+
+  getGoogleApiKey(): string {
+    return this.envConfig.GOOGLE_API_KEY;
+  }
 }
