@@ -5,6 +5,7 @@ import { Charger } from "./chargers.entity";
 import { ChargersMapper } from "./chargers.mapper";
 import { ConfigService } from "../config/config.service";
 import { ChargersGeocoder } from "./chargers.geocoder";
+import * as fs from "fs";
 
 @Injectable()
 export class ChargersService {
@@ -21,9 +22,11 @@ export class ChargersService {
     const response = await this.httpService
       .get(this.configService.getChargersUrl())
       .toPromise();
+
     const chargers = await this.chargersMapper.toChargers(response.data);
     const geocodedChargers = await this.chargersGeocoder.geocodeAll(chargers);
-    return await this.chargersRepository.save(geocodedChargers);
+    //return await this.chargersRepository.save(geocodedChargers);
+    return await geocodedChargers;
   }
 
   async findOne(uuid: string) {
